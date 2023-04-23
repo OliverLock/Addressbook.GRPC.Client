@@ -6,6 +6,11 @@ option csharp_namespace = "Addressbook.GRPC.Client";
 service Contacts {
 
 	rpc AddContact (AddContactRequest) returns (AddContactResponse);
+	rpc GetContacts (Empty) returns (GetContactsResponse);
+}
+
+//Empty message type as proto requires some input parameter
+message Empty{
 
 }
 
@@ -22,4 +27,20 @@ message AddContactResponse{
 	string firstName = 2;
 	string lastName = 3;
 	int32 id = 4;
+}
+
+
+
+message GetContactsResponse{
+	string message = 1;
+	repeated Contact Contacts = 2;
+}
+
+
+ message Contact{
+	int32 id = 1;
+	string firstName = 2;
+	string lastName = 3;
+	string postCode = 4;
+	string phoneNumber = 5;
 }

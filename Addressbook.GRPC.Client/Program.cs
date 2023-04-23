@@ -17,18 +17,25 @@ var newContact = new AddContactRequest {
 
 var client = new Contacts.ContactsClient(channel);
 var reply = await client.AddContactAsync(newContact);
-
-
-
-
-
-//var client = new Greeter.GreeterClient(channel);
-//var reply = await client.SayHelloAsync(
-//                  new HelloRequest { Name = "GreeterClient" });
-
-
-
-
 Console.WriteLine($"Added Contact {reply.FirstName} {reply.LastName} with id of {reply.Id}");
+
+
+
+var resonseGetContacts = await client.GetContactsAsync(new Empty());
+
+if (resonseGetContacts.Contacts != null)
+{
+    foreach (var contact in resonseGetContacts.Contacts)
+    {
+        Console.WriteLine($"Found Contact {contact.FirstName} {contact.LastName} with id: {contact.Id}");
+    }
+}
+else
+{
+    Console.WriteLine("No Contacts Found");
+}
+
+
+
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
