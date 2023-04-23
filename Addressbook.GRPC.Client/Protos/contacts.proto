@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "Addressbook.GRPC.Client";
+
+
+service Contacts {
+
+	rpc AddContact (AddContactRequest) returns (AddContactResponse);
+
+}
+
+message AddContactRequest{
+	string firstName = 1;
+	string lastName = 2;
+	string postCode = 3;
+	string phoneNumber = 4;
+}
+
+
+message AddContactResponse{
+	string message = 1;
+	string firstName = 2;
+	string lastName = 3;
+	int32 id = 4;
+}
